@@ -9,7 +9,16 @@ export default class ContextProvider extends Component {
     this.state = {
       isOpen: false,
       message: 'closed',
+      next: 'nothing',
     };
+  }
+
+  openNext = () => {
+    const next = (this.state.next === 'nothing') ? 'next to' : 'nothing';
+    this.setState({
+      next,
+    });
+    alert(next);
   }
 
   openSnackbar = () => {
@@ -35,6 +44,8 @@ export default class ContextProvider extends Component {
           closeSnackbar: this.closeSnackbar,
           snackbarIsOpen: this.state.isOpen,
           message: this.state.message,
+          next: this.state.next,
+          openNext: this.openNext,
         }}
       >
       {this.props.children}
